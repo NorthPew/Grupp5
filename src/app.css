@@ -17,7 +17,7 @@ html, body {
 }
 
 .header-container {
-    width: 100%;
+    min-width: 500px;
     height: 52px;
     position: fixed;
     display: flex;
