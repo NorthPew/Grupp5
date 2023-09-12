@@ -5,9 +5,9 @@ function App() {
   return (
     <div className="center-box">
       <header className='header-container'>
-        <button>Ladda upp</button>
+        <button className='btn-loading'>Ladda upp</button>
         <h1>Bildvisare</h1>
-        <select>
+        <select className='sort-item'>
           <option>Sortera</option>
           <option>A - Ö</option>
           <option>Ö - A</option>
