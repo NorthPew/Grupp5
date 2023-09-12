@@ -1,7 +1,9 @@
 import '../src/app.css'
 
-function App() {
+import { bucketParams, s3 } from '../config';
 
+
+function App() {
   return (
     <div className="center-box">
       <header className="header-container">
@@ -15,19 +17,26 @@ function App() {
           <option>Fallande filstorlek</option>
         </select>
       </header>
+
       <div className="image-container">
-        <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
-          <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
-        </div>
-        <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
-          <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
-        </div>
-        <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
-          <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
-        </div>
+          {
+            s3.listObjects(bucketParams, function (err, data) { 
+          if (err) {
+            console.log("Error: ", err);
+          } else {
+            console.log("Success", data);
+            for (let i = 0; data.Contents.length; i++) {
+              let urlParams = {Bucket: bucketParams.Bucket, Key: data.Contents[i].Key}
+              s3.getSignedUrl('getObject', urlParams, function (err, url) {
+                <div class="image-box">
+                  <a className="download-button" href={url} download target="_blank">Förstora bild och ladda ner</a>
+                <img src={url} width="200" height="125"></img>
+              </div>
+              })
+            }
+          }
+        })
+        }
       </div>
     </div>
   )
