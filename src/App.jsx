@@ -17,15 +17,15 @@ function App() {
       </header>
       <div className="image-container">
         <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" target="_blank">Ladda ner</a>
+          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
           <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
         </div>
         <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" target="_blank">Ladda ner</a>
+          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
           <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
         </div>
         <div class="image-box">
-          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" target="_blank">Ladda ner</a>
+          <a className="download-button" href="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" download target="_blank">Förstora bild och ladda ner</a>
           <img src="https://kalleanka.se/wp-content/uploads/Figurer-Kalle-Anka.jpg" width="200" height="125"></img>
         </div>
       </div>
