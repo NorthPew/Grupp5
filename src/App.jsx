@@ -1,5 +1,9 @@
 import { Component } from 'react'
+import axios from 'axios'
+
 import '../src/app.css'
+
+
 
 class  App extends Component {
   state = {
@@ -19,8 +23,10 @@ class  App extends Component {
     );
 
     // call api
-    console.log('Detta är ett låtsas API POST REQUEST!: ', formData);
-    // this.setState({selectedFile: null, fileUploadedSuccess: true})
+    axios.post("https://t6a0wj9ei1.execute-api.eu-north-1.amazonaws.com/dev/image-upload", formData).then(() => {
+      this.setState({selectedFile: null, fileUploadedSuccess: true})
+    })
+
   }
 
   // Kanske ta bort detta sen
