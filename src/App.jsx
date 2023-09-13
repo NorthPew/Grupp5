@@ -1,16 +1,22 @@
 import { Component } from 'react'
 import axios from 'axios'
+import { API_URL } from './constants'
+
 
 import '../src/app.css'
 
 
 
 class  App extends Component {
+
+  // States
   state = {
     selectedFile: null,
-    fileUploadedSuccess: false
+    fileUploadedSuccess: false,
+    data: null
   }
 
+  // Upload part
   onFileChange = event => {
     this.setState({selectedFile: event.target.files[0]})
   }
@@ -21,32 +27,27 @@ class  App extends Component {
     "demo file",
     this.state.selectedFile
     );
-
-    // call api
-    axios.post("https://t6a0wj9ei1.execute-api.eu-north-1.amazonaws.com/dev/image-upload", formData).then(() => {
-      this.setState({selectedFile: null, fileUploadedSuccess: true})
-    })
-
   }
 
-  // Kanske ta bort detta sen
-  fileData = () => {
-    if (this.state.selectedFile) {
-      return (
-        <p>Filnamn: {this.state.selectedFile.name}</p>
-      )
-    } else if (this.state.fileUploadedSuccess) {
-      return (
-        <p>Filen har laddats upp</p>
-      )
-    } else {
-      return (
-        <p>Ladda upp fil!</p>
-      )
-    }
-}
+// Get images
+
+  getImage = () => {
+    axios.get(`${API_URL}GetFromS3 `)
+    .then(response => {
+      this.setState({data: response.data})
+      .catch(error => {
+        console.error(error);
+      })
+    })
+  }
 
   render() {
+    const { data } = this.state;
+
+    if (!data) {
+      return (<p>Loading images</p>)
+    }
+
     return (
       <div className="center-box">
       <header className="header-container">
@@ -63,13 +64,13 @@ class  App extends Component {
       </header>
   
       <div className="image-container">
-          {
-            this.fileData()
-            // map function here
-            //  <div class="image-box">
-            // <a className="download-button" href={url} download target="_blank">Förstora bild och ladda ner</a>
-            // <img src={url} width="200" height="125"></img>
-            // </div>
+        {
+          data.map(item => {
+            <div key={item} class="image-box">
+              <a className="download-button" href={item} download target="_blank">Förstora bild och ladda ner</a>
+              <img src={item} width="200" height="125"></img>
+             </div>
+          })
         }
       </div>
     </div>
