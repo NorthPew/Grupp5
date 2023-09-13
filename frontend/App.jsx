@@ -33,7 +33,7 @@ class App extends Component {
 
 
     // Posta bilden direkt till S3 bucketen
-    fetch(url, {
+    await fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'multipart/form-data' },
       body: this.state.selectedFile

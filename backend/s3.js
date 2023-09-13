@@ -12,8 +12,7 @@ dotenv.config()
 const s3 = new S3Client({
     region: 'eu-north-1',
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    signatureVersion: 'v4'
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
 export const generateUploadURL = async () => {
