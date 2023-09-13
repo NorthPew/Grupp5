@@ -32,7 +32,7 @@ class  App extends Component {
 // Get images
 
   getImage = () => {
-    axios.get(`${API_URL}GetFromS3 `)
+    axios.get(`${API_URL}get-image `)
     .then(response => {
       this.setState({data: response.data})
       .catch(error => {
