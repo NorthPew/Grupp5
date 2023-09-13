@@ -30,9 +30,8 @@ class  App extends Component {
   }
 
 // Get images
-
   getImage = () => {
-    axios.get(`${API_URL}get-image `)
+    axios.get(`${API_URL}get-image`)
     .then(response => {
       this.setState({data: response.data})
       .catch(error => {
@@ -41,9 +40,13 @@ class  App extends Component {
     })
   }
 
+
+  // Render
   render() {
+
     const { data } = this.state;
 
+    // If the data doesn't exist
     if (!data) {
       return (<p>Loading images</p>)
     }
