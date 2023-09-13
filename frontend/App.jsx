@@ -18,12 +18,16 @@ class App extends Component {
     this.setState({selectedFile: event.target.files[0]})
   }
 
-  onFileUpload = async () => {
+  onFileUpload = async (event) => {
+    event.preventDefault()
+
     const formData = new FormData()
     formData.append(
     "demo file",
     this.state.selectedFile
     );
+
+      console.log(this.state.selectedFile);
 
   // Få en säker URL från server
   const { url } = await fetch(`${API_URL}/s3Url`).then(res => res.json())
