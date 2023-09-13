@@ -8,8 +8,6 @@ class App extends Component {
   // States
   state = {
     selectedFile: null,
-    fileUploadedSuccess: false,
-    //data: null
   }
 
   // Upload part
@@ -44,9 +42,6 @@ class App extends Component {
 
     const imageURL = url.split('?')[0]
     console.log(imageURL);
-
-    // Posta en request till servern för att spara annan data
-
   }
 
 
