@@ -9,10 +9,16 @@ const randomBytes = promisify(crypto.randomBytes)
 
 dotenv.config()
 
+const region = "eu-north-1"
+const bucketName = "s3grupp5bucket"
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+
 const s3 = new S3Client({
-    region: 'eu-north-1',
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    region,
+    accessKeyId,
+    secretAccessKey,
+    signatureVersion: 'v4'
 })
 
 export const generateUploadURL = async () => {
@@ -21,10 +27,11 @@ export const generateUploadURL = async () => {
     const imageName = rawBytes.toString('hex')
 
     const params = ({
-        Bucket: "s3grupp5bucket",
+        Bucket: bucketName,
         Key: imageName,
     })
     
     const command = new PutObjectCommand(params);
     const uploadURL = await getSignedUrl(s3, command, { expiresIn: 60 });
+    return uploadURL
 }

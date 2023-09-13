@@ -50,10 +50,8 @@ class App extends Component {
     return (
       <div className="center-box">
       <header className="header-container">
-        <form onSubmit={this.onFileUpload}>
           <input type="file" onChange={this.onFileChange} accept='image/*' />
-          <button type="submit">Ladda upp</button>
-        </form>
+          <button onClick={this.onFileUpload}>Ladda upp</button>
 
         <h1>Bildvisare</h1>
         <select className='sort-item'>
