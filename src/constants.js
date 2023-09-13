@@ -1,1 +1,0 @@
-export const API_URL = 'https://ht5d3u7sm8.execute-api.eu-north-1.amazonaws.com/prod/'; 
