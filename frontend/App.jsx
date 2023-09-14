@@ -16,32 +16,28 @@ class App extends Component {
     this.setState({selectedFile: event.target.files[0]})
   }
 
-  onFileUpload = async (event) => {
-    event.preventDefault()
+  onFileUpload = async () => {
+    const url = `${API_URL}`
 
-    const formData = new FormData()
-    formData.append(
-    "demo file",
-    this.state.selectedFile
-    );
+   await fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify({key: this.state.selectedFile})
+   })
 
-      console.log(this.state.selectedFile);
-
-  // Få en säker URL från server
-  const { url } = await fetch(`${API_URL}/s3Url`).then(res => res.json())
-  console.log(url);
-
-
-    // Posta bilden direkt till S3 bucketen
-    await fetch(url, {
+   .then((res) => res.json())
+   .then((res) => {
+    console.log(res);
+    fetch(res.URL, {
       method: 'PUT',
-      headers: { 'Content-Type': 'multipart/form-data' },
+      mode: 'cors',
       body: this.state.selectedFile
     })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+   })
 
-
-    const imageURL = url.split('?')[0]
-    console.log(imageURL);
+   .catch((err) => console.log(err))
   }
 
 
