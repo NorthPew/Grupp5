@@ -7,8 +7,8 @@ import './app.css'
 import AWS from 'aws-sdk';
 
 AWS.config.update({ 
-  accessKeyId: "AKIAQHMIJWQQFB6F7EZC", 
-  secretAccessKey: "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", 
+  accessKeyId: "", 
+  secretAccessKey: "", 
   region: 'eu-north-1', 
   bucket: 's3buckergrupp5'
   }); 
@@ -20,6 +20,7 @@ const s3 = new AWS.S3();
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);;
   const [images, setImages] = useState([]);
+  const [textMessage, setTextMessage] = useState(null)
 
   useEffect(() => {
     getImages()
@@ -54,6 +55,10 @@ function App() {
       .catch((err) => console.log(err))
      })
      .catch((err) => console.log(err))
+
+     return (
+     setTextMessage("Din fil har blivit uppladad!")
+     )
   }
   
   function getImages() {
@@ -85,6 +90,7 @@ function App() {
       </header>
   
       <div>
+          <p>{textMessage}</p>
       <ul className="image-container">
           {images.map((image, index) => (
             <li key={index}><img className="image-box" src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img></li>
