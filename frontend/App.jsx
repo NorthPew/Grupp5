@@ -1,23 +1,11 @@
 import { Component } from 'react'
 import { API_URL } from './constants'
-import AWS from 'aws-sdk';
 import './app.css'
-
-AWS.config.update({ 
-  accessKeyId: '', 
-  secretAccessKey: '', 
-  region: 'eu-north-1', 
-  }); 
-
-
-const s3 = new AWS.S3();
-
 class App extends Component {
 
   // States
   state = {
     selectedFile: null,
-    images: []
   }
 
   // Upload part
@@ -49,24 +37,6 @@ class App extends Component {
    .catch((err) => console.log(err))
   }
 
-  getImages() {
-    const params = {
-      Bucket: 's3buckergrupp5'
-    }
-
-    s3.listObjectsV2(params, (err, data) => {
-      if (err) {
-        console.error('Fel vid hämtning av bilder:', err);
-      } else {
-
-        const imageList = data.Contents.map((obj) => obj.Key);
-        this.setState({images: [imageList]});
-      }
-    });
-
-  }
-
-
   // Render
   render() {
     return (
@@ -80,12 +50,12 @@ class App extends Component {
   
       <div className="image-container">
         {
-          this.state.images.map(item => {
+          /* this.state.images.map(item => {
             <div key={item} class="image-box">
               <a className="download-button" href={item} download target="_blank">Förstora bild och ladda ner</a>
               <img src={item} width="200" height="125"></img>
              </div>
-          })
+          }) */
         }
       </div>
     </div>
