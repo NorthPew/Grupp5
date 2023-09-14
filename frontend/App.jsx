@@ -32,13 +32,14 @@ function App() {
    setSelectedImage(event.target.files[0])
   }
   
+
   async function onFileUpload() {
     const url = `${API_URL}`
   
     fetch(url, {
       method: 'POST',
       mode: 'cors',
-      body: JSON.stringify({key: `${selectedImage.name}`})
+      body: JSON.stringify({key: `${selectedImage.type}/${selectedImage.name}`})
      })
   
      .then((res) => res.json())
@@ -73,13 +74,12 @@ function App() {
     };
   }
 
-
   // Render
     return (
       <div className="center-box">
       <header className="header-container">
           <input type="file" onChange={onFileChange} accept='image/*' />
-          <button onClick={onFileUpload}>Ladda upp</button>
+          <button onClick={() => {onFileUpload(); getImages()}}>Ladda upp</button>
 
         <h1>Bildvisare</h1>
       </header>
