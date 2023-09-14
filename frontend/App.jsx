@@ -84,10 +84,10 @@ function App() {
         <h1>Bildvisare</h1>
       </header>
   
-      <div className="image-container">
-      <ul>
+      <div>
+      <ul className="image-container">
           {images.map((image, index) => (
-            <li key={index}><img src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img></li>
+            <li key={index}><img className="image-box" src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img></li>
           ))}
       </ul>
       </div>
