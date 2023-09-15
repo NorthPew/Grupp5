@@ -33,8 +33,7 @@ function App() {
 
   function onFileChange(event) {
    setSelectedImage(event.target.files[0])
-  }
-  
+  }  
 
   async function onFileUpload() {
     const url = `${API_URL}`
@@ -61,9 +60,18 @@ function App() {
      })
      .catch((err) => console.log(err))
 
-     return (
-     setTextMessage("Din fil har blivit uppladad!")
-     )
+     const visible =   setTimeout(() => {
+      setTextMessage("Din fil har blivit uppladad!")
+    }, 500)
+
+    const hidden =   setTimeout(() => {
+      setTextMessage(null)
+    }, 4000)
+
+     return () => {
+       clearTimeout(visible)
+       clearTimeout(hidden)
+      }
   }
   
   function getImages() {
@@ -101,7 +109,7 @@ function App() {
           <input id='input-file' className='file' type="file" onChange={onFileChange} accept='image/*' />
           <button className='btn-loading' onClick={() => {onFileUpload(); getImages()}}>Ladda upp</button>
 
-        <h1>Bildvisare</h1>
+        <h1 className='heading'>Bildvisare</h1>
 
           <input className='sort-item' type="text" placeholder="Söka efter bilder" value={searchTerm} onChange={handleSearchChange}
       />

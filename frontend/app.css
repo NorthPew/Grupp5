@@ -8,35 +8,47 @@ html, body {
     display: grid;
     flex-flow: column wrap;
     height: 100%;
-    width: 100vw;
     justify-content: center;
 }
 
 
 /* Center */
 .center-box {
-    min-width: 500px;
+    /* min-width: 500px; */
     height: 100%;
 }
 
 /* Header */
 .header-container {
     position: sticky;
-    display: flex;
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: space-between;
     align-content: center;
 }
 
+.heading {
+    grid-column: 2 /span 2;
+    grid-row: 1;
+    justify-self: center;
+}
+
 .btn-loading {
+    grid-column: 3 /span 2;
+    grid-row: 2;
+    justify-self: center;
     height: 2.2rem;
     width: 5.3rem;
     border: solid 1px black;
     background-color: rgb(202, 203, 204);
     cursor: pointer;
 }
+
 .btn-file {
+    grid-column: 1 /span 2;
+    grid-row: 2;
+    justify-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,9 +59,12 @@ html, body {
     border: solid 1px black;
 }
 .sort-item{
+    grid-column: 2 /span 2;
+    grid-row: 3;
     height: 2rem;
+    margin-top: 1em;
+    justify-self: center;
     border: solid 1xp black;
-    cursor: pointer;
 }
 #input-file{
     height: 2.2rem;
@@ -63,7 +78,8 @@ html, body {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-   list-style-type: none;
+    list-style-type: none;
+    padding: 0;
 }
 
 .image-box {
@@ -71,14 +87,12 @@ html, body {
     width: 200px;
     display: grid;
     align-content: space-around;
-    position: relative;
+ 
     margin: 0.5rem;
     border: solid 1px black;
 }
 
 .download-button {
-    display: none;
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -91,4 +105,13 @@ html, body {
     align-items: center;
     justify-content: center;
 }
+
+@media (min-width: 1100px) {
+    .btn-loading {
+        grid-column: 3;
+    }
+    .btn-file {
+        grid-column: 2;
+    }
+  }
 
