@@ -119,7 +119,8 @@ function App() {
           <p>{textMessage}</p>
       <ul className="image-container">
           {filteredImages.map((image, index) => (
-            <li key={index}><img className="image-box" src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img></li>
+            <li key={index}>
+              <img className="image-box" src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img><legend className="image-button"><a className="download-button" href={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`} target="_blank" download>Visa bild för att ladda ner</a></legend></li>
           ))}
       </ul>
       </div>
