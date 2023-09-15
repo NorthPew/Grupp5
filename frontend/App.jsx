@@ -18,9 +18,10 @@ const s3 = new AWS.S3();
 
 
 function App() {
-  const [selectedImage, setSelectedImage] = useState(null);;
+  const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState([]);
   const [textMessage, setTextMessage] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getImages()
@@ -82,6 +83,15 @@ function App() {
     };
   }
 
+  const handleSearchChange = event => {
+    setSearchTerm(event.target.value);
+  };
+
+
+  const filteredImages = images.filter(image =>
+    image.toLowerCase().includes(searchTerm.toLowerCase()));
+
+
   // Render
     return (
       <div className="center-box">
@@ -90,12 +100,15 @@ function App() {
           <button onClick={() => {onFileUpload(); getImages()}}>Ladda upp</button>
 
         <h1>Bildvisare</h1>
+
+          <input type="text" placeholder="Söka efter bilder" value={searchTerm} onChange={handleSearchChange}
+      />
       </header>
   
       <div>
           <p>{textMessage}</p>
       <ul className="image-container">
-          {images.map((image, index) => (
+          {filteredImages.map((image, index) => (
             <li key={index}><img className="image-box" src={`http://s3buckergrupp5.s3-website.eu-north-1.amazonaws.com/${image}`}></img></li>
           ))}
       </ul>
