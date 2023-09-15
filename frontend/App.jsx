@@ -7,8 +7,8 @@ import './app.css'
 import AWS from 'aws-sdk';
 
 AWS.config.update({ 
-  accessKeyId: "", 
-  secretAccessKey: "", 
+  accessKeyId: "AKIAQHMIJWQQDUEHO6O2", 
+  secretAccessKey: "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", 
   region: 'eu-north-1', 
   bucket: 's3buckergrupp5'
   }); 
@@ -51,7 +51,10 @@ function App() {
         mode: 'cors',
         body: selectedImage
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        getImages(); // Kalla på getImages efter lyckad uppladdning
+      })
       .catch((err) => console.log(err))
      })
      .catch((err) => console.log(err))
