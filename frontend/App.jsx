@@ -6,6 +6,7 @@ import './app.css'
 
 import AWS from 'aws-sdk';
 
+//obs ta bort information
 AWS.config.update({ 
   accessKeyId: "", 
   secretAccessKey: "", 
@@ -96,12 +97,13 @@ function App() {
     return (
       <div className="center-box">
       <header className="header-container">
-          <input type="file" onChange={onFileChange} accept='image/*' />
-          <button onClick={() => {onFileUpload(); getImages()}}>Ladda upp</button>
+          <label htmlFor="input-file" className='btn-file' > Välj fil</label>
+          <input id='input-file' className='file' type="file" onChange={onFileChange} accept='image/*' />
+          <button className='btn-loading' onClick={() => {onFileUpload(); getImages()}}>Ladda upp</button>
 
         <h1>Bildvisare</h1>
 
-          <input type="text" placeholder="Söka efter bilder" value={searchTerm} onChange={handleSearchChange}
+          <input className='sort-item' type="text" placeholder="Söka efter bilder" value={searchTerm} onChange={handleSearchChange}
       />
       </header>
   
